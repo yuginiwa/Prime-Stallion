@@ -15,13 +15,39 @@ test('hero image spans edge to edge on desktop and mobile', async ({page}) => {
     const image = page.locator('.hero').getByRole('img');
     await expect(image).toBeVisible();
     await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.naturalWidth)).toBeGreaterThan(0);
-    const box = (await image.boundingBox())!;
+    // The clipped photo frame stays full bleed while the image scales inside it.
+    const box = (await page.locator('.hero-photo').boundingBox())!;
     const viewportWidth = await page.evaluate(() => document.documentElement.clientWidth);
     expect(box.x).toBeCloseTo(0, 0);
     expect(box.width).toBeCloseTo(viewportWidth, 0);
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(viewportWidth);
     await expect(page.locator('.hero').getByRole('link', {name: 'Discuss Your Project'})).toBeInViewport();
   }
+});
+
+test('homepage service cards display distinct images and keep service links', async ({page}) => {
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('/#services');
+  const cards = page.getByRole('region', {name:'Build. Renovate. Develop.'}).getByRole('article');
+  await expect(cards).toHaveCount(3);
+  for (const [index, service] of ['build', 'renovate', 'develop'].entries()) {
+    const card = cards.nth(index);
+    const image = card.locator('img');
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+    await expect(card.getByRole('link')).toHaveAttribute('href', `/services#${service}`);
+  }
+  await expect(cards.last()).toContainText('Concept illustration');
+});
+
+test('homepage motion respects reduced-motion preferences', async ({page}) => {
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await page.goto('/');
+  const photo = page.locator('.hero img');
+  await expect(photo).toHaveCSS('animation-name', 'hero-settle');
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await expect(photo).toHaveCSS('animation-name', 'none');
+  await expect(page.getByRole('heading', {name:'Building Strength. Creating Legacy.'})).toBeVisible();
 });
 
 test('renovation service opens a tailored Messenger inquiry', async ({page, context}) => {

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M0 22V0H22" stroke="#ead6a7" stroke-opacity=".08"/></pattern>
+    <pattern id="plots" width="82" height="96" patternUnits="userSpaceOnUse"><path d="M2 3H80V94H2Z" fill="#313326" stroke="#857451"/><path d="M21 26H61V67H21Z M19 69H63" stroke="#c5ad73" stroke-width="2"/></pattern>
+  </defs>
+  <path fill="#181b16" d="M0 0H800V450H0Z"/><path fill="url(#grid)" d="M0 0H800V450H0Z"/>
+  <g transform="rotate(-12 400 225)">
+    <path d="M98 72H670V357H98Z" fill="#22271d" stroke="#ab935f" stroke-dasharray="7 5"/>
+    <path d="M123 92H629V192H123ZM123 255H629V351H123Z" fill="url(#plots)"/>
+    <path d="M90 194H665Q694 194 712 176L810 78V141L739 216Q711 249 668 249H90Z" fill="#4a4231" stroke="#c0a771" stroke-width="2"/>
+    <path d="M95 221H664Q702 221 728 195L809 111" stroke="#e0ca94" stroke-width="2" stroke-dasharray="13 10"/>
+    <path d="M105 375H647Q688 375 705 343L774 221" stroke="#65948a" stroke-opacity=".26" stroke-width="20"/>
+    <path d="M105 375H647Q688 375 705 343L774 221" stroke="#7ca99e" stroke-width="3" stroke-dasharray="7 5"/>
+    <g stroke="#6a7656"><circle cx="81" cy="119" r="17"/><circle cx="75" cy="151" r="12"/><circle cx="675" cy="291" r="20"/><circle cx="666" cy="326" r="13"/><circle cx="703" cy="286" r="12"/></g>
+  </g>
+</svg>

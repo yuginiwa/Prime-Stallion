@@ -9,8 +9,26 @@ export function PageIntro({ label, title, body }: {label:string; title:string; b
   return <section className="page-intro"><div className="wrap"><Eyebrow>{label}</Eyebrow><h1>{title}</h1><p className="lead">{body}</p></div></section>;
 }
 
+const serviceImages = {
+  build: { src: photoPath('avida-settings-nuvali', 'facade.webp'), alt: 'Front of the new home at Avida Settings Nuvali', credit: 'Avida Settings Nuvali' },
+  renovate: { src: photoPath('tamara-renovation', 'interior.webp'), alt: 'Renovated home interior at Tamara', credit: 'Tamara · Tanza, Cavite' },
+  develop: { src: '/services/site-development.svg', alt: 'Conceptual site plan showing residential lots, a road and a drainage corridor', credit: 'Concept illustration' },
+} satisfies Record<Service['id'], {src:string; alt:string; credit:string}>;
+
 export function ServiceCard({service}: {service:Service}) {
-  return <article className="service-card"><span className="service-no" aria-hidden="true">{service.number}</span><Eyebrow>{service.name}</Eyebrow><h3>{service.title}</h3><p>{service.summary}</p><Link className="text-link" href={`/services#${service.id}`}>Explore {service.name} <span aria-hidden="true">↗</span></Link></article>;
+  const image = serviceImages[service.id];
+  return <article className="service-card service-card-preview">
+    <figure className={`service-visual service-visual-${service.id}`}>
+      <Image src={image.src} alt={image.alt} fill sizes="(max-width:560px) 94vw, (max-width:980px) 45vw, 29vw" />
+      <figcaption>{image.credit}</figcaption>
+    </figure>
+    <div className="service-card-copy">
+      <Eyebrow>{service.name}</Eyebrow>
+      <h3>{service.title}</h3>
+      <p className="service-summary">{service.summary}</p>
+      <Link className="text-link" href={`/services#${service.id}`}>Explore {service.name} <span aria-hidden="true">↗</span></Link>
+    </div>
+  </article>;
 }
 
 export function ProjectGrid({ limit, category }: { limit?: number; category?: Service['id'] }) {

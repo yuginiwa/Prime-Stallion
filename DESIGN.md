@@ -36,7 +36,7 @@ Arial Bold and Regular are the approved working fallback. Use uppercase microcop
 
 ## Layout
 
-Constrain layouts to the shared content width. Use a full-bleed project photo behind the homepage hero. Keep the copy left aligned on desktop and below the photo’s focal point on phones, with a localized dark gradient for contrast. Keep CTA labels readable without hover.
+Constrain layouts to the shared content width. Use a full-bleed project photo behind the homepage hero. Keep the copy left aligned on desktop and below the photo’s focal point on phones, with a localized dark gradient for contrast. Keep CTA labels readable without hover. Use a brief hero settle, modest entrance and hover motion, and disable these effects when reduced motion is requested. Scroll effects should never hide content.
 
 ## Components
 

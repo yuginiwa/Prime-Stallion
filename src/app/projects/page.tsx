@@ -20,7 +20,12 @@ export default function Projects() {
     <section id="renovate" aria-labelledby="renovation-projects-title"><div className="section-heading"><div><Eyebrow>Existing properties</Eyebrow><h2 id="renovation-projects-title">Renovation projects</h2></div></div><ProjectGrid category="renovate" /></section>
     {localReview && <section id="project-review" aria-labelledby="project-review-title"><div className="section-heading"><div><Eyebrow>Local preview only</Eyebrow><h2 id="project-review-title">Other projects for review</h2></div></div>
       <p>These photos are for checking project scope and credits. They are not public case studies yet.</p>
-      <ul className="project-grid review-projects">{reviewProjects.map(project => <li key={project.slug} className="project-card"><div className="project-image"><Image src={`/local-project-review/${project.slug}.webp`} alt={project.alt} fill sizes="(max-width:560px) 100vw, (max-width:850px) 50vw, 33vw" unoptimized /></div><div className="project-info"><h3>{project.name}</h3><p>{project.note}</p></div></li>)}</ul>
+      <ul className="project-grid review-projects">{reviewProjects.map(project => <li id={`review-${project.slug}`} key={project.slug} className="project-card"><div className="project-image"><Image src={`/local-project-review/${project.slug}.webp`} alt={project.alt} fill sizes="(max-width:560px) 100vw, (max-width:850px) 50vw, 33vw" unoptimized /></div><div className="project-info"><h3>{project.name}</h3><p>{project.note}</p>
+        {project.slug === 'caloocan' && <details className="review-extra"><summary>More Caloocan photos</summary><div className="review-extra-grid">
+          <figure><div className="project-image"><Image src="/local-project-review/caloocan-exterior.webp" alt="Caloocan façade at night" fill sizes="(max-width:560px) 45vw, 15vw" unoptimized /></div><figcaption>Exterior view</figcaption></figure>
+          <figure><div className="project-image"><Image src="/local-project-review/caloocan-bath-detail.webp" alt="Tiled shower and wall niche" fill sizes="(max-width:560px) 45vw, 15vw" unoptimized /></div><figcaption>Shower detail</figcaption></figure>
+        </div></details>}
+      </div></li>)}</ul>
     </section>}
   </div></div><ProjectCta /></>;
 }
