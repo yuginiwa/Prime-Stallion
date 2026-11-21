@@ -8,6 +8,22 @@ test('homepage explains the company and shows a real project', async ({page}) =>
   await expect(page.getByRole('link', { name: 'View Our Work', exact: true })).toHaveAttribute('href', '/projects');
 });
 
+test('hero image spans edge to edge on desktop and mobile', async ({page}) => {
+  for (const width of [1440, 390, 320]) {
+    await page.setViewportSize({width, height: 820});
+    await page.goto('/');
+    const image = page.locator('.hero').getByRole('img');
+    await expect(image).toBeVisible();
+    await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.naturalWidth)).toBeGreaterThan(0);
+    const box = (await image.boundingBox())!;
+    const viewportWidth = await page.evaluate(() => document.documentElement.clientWidth);
+    expect(box.x).toBeCloseTo(0, 0);
+    expect(box.width).toBeCloseTo(viewportWidth, 0);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(viewportWidth);
+    await expect(page.locator('.hero').getByRole('link', {name: 'Discuss Your Project'})).toBeInViewport();
+  }
+});
+
 test('renovation service opens a tailored Messenger inquiry', async ({page, context}) => {
   await context.grantPermissions(['clipboard-read', 'clipboard-write']);
   await page.goto('/services');
