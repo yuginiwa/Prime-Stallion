@@ -39,7 +39,7 @@ test('quotation builder is marked noindex and fits a narrow viewport', async ({p
   await page.setViewportSize({width:320,height:760});
   await page.goto('/quotations');
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
-  await expect(page.getByText(/development only/i)).toBeVisible();
+  await expect(page.getByText(/public demo — sample data only/i)).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
   const scan=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
   expect(scan.violations.map(v=>v.id)).toEqual([]);

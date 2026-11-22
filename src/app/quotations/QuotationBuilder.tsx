@@ -73,7 +73,7 @@ export function QuotationBuilder() {
 
   return <div className={styles.workspace} data-quote-workspace>
     <div className={styles.intro}><div className={styles.kicker}>PRIME STALLION / ESTIMATING</div><h1>Quotation builder</h1><p>Build scope by section, check your totals, and print a branded draft.</p></div>
-    <aside className={styles.notice}><strong>Development only.</strong> No sign-in or shared storage. Use sample data, not real client details. Saving keeps one draft in this browser; exports are marked DRAFT.</aside>
+    <aside className={styles.notice}><strong>Public demo — sample data only.</strong> Anyone with the link can open the builder. Do not enter real client details or confidential rates. Saving keeps one draft in this browser; exports are marked DRAFT.</aside>
     <div className={styles.editor}>
       <div className={styles.stack}>
         <section className={styles.panel} aria-labelledby="quote-details"><h2 id="quote-details">Project details</h2><div className={styles.fields}>
