@@ -15,6 +15,12 @@ Open `http://localhost:3000`. Business contact links are in `src/content/site.ts
 
 The five candidate projects from the local Materials for Posting library can be reviewed at `/projects#project-review`. Start the dev server on loopback with `LOCAL_PROJECT_REVIEW=true npm run dev -- --hostname 127.0.0.1`. This requires the local thumbnails in `public/local-project-review/`, which is Git-ignored; do not copy that directory to any deployment. The review section is disabled on Vercel. Move only cleared photos and verified project facts into the public portfolio.
 
+## Quotation builder (development)
+
+Open `/quotations` on a local `npm run dev -- --hostname 127.0.0.1` server. To check a local production build, run `npm run build`, then `ENABLE_QUOTATIONS_DEV=1 npm run start -- --hostname 127.0.0.1`. The route is off by default in production and always disabled on Vercel in this phase. This is not authentication; keep the dev server on loopback.
+
+Use synthetic data only. **Save on this device** explicitly stores one draft in this browser; there is no server storage, syncing or client delivery. Use a blank draft or the Renovation & Demolition starter (no reference workbook rates). Choose a draft tax treatment, check the subtotal and exceptions, then **Preview draft → Print / Save as PDF**. The PDF draft mark is intentional. Authentication, data retention, approved rates/tax rules, revision history and issuance must be designed before live use.
+
 ## Verify
 
 ```sh
